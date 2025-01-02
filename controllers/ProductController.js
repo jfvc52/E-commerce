@@ -31,7 +31,7 @@ const ProductController = {
             'The Product was drop OK!!!'
         )
     },
-    getById(req, res) {
+    getProductById(req, res) {
         Product.findByPk(req.params.id)
             //include: [User]  para traer tambien el Usuario en publicaciones
             .then(post => res.send(post))
@@ -51,8 +51,8 @@ const ProductController = {
             res.status(500).send({ message: "Ha habido un error", error });
         }
     },
-    /**  puede buscar uunapalabra completa, una letra o varias... El buscador NO es sencible a
-     * hacemos un "endpoint especial, que busca poor parametro de Titles/descripcion
+    /**  puede buscar uunapalabra completa, una letra o varias... El buscador NO es sencible a mayusculas
+     * hacemos un "endpoint especial, que busca por parametro de Titles/description
      * async getProductByName(req, res) {
         try {
             const product = await Product.findAll({ "busca TODO"
@@ -67,9 +67,7 @@ const ProductController = {
             console.error(error);
             res.status(500).send({ message: "Ha habido un error", error });
         }
-     * 
      */
-
 
     async getAll(req, res) {
         try {
